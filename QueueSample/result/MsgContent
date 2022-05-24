@@ -1,0 +1,33 @@
+package com.lgcns.test;
+
+public class MsgContent {
+	private String recYN = "A"; //A active I inactive
+	private String msg ;
+	private int id ;
+	
+	
+	public void setMsg(int id, String msg) {
+		this.id = id;
+		this.msg = msg ;
+		this.recYN = "A";
+						
+	}
+	
+	public void setRecYN(String recYN) {
+		this.recYN = recYN;
+	}
+	
+	public String[] getMsg() {
+		
+		String[] res = {Integer.toString(id),recYN, msg}; 
+		
+		return res;
+	}
+	
+	
+	
+	
+	
+
+
+}
