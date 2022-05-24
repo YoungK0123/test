@@ -1,0 +1,108 @@
+package com.lgcns.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class QueueMsg {
+
+	private int size;
+	private int count = 0; // index
+
+	private List<MsgContent> listMsg;
+	private boolean boo;
+
+	//private List<String> listMsg = new ArrayList<String>();
+
+	public void createQueue(int size, List<MsgContent> queue) {
+		this.size = size;
+		this.listMsg = queue;
+
+	}
+
+	public boolean inputQueueMsg(String msg) {
+
+		if (listMsg.size() == size) {
+			boo = false;
+		} else {
+			boo = true;
+			MsgContent mgc = new MsgContent();
+			mgc.setMsg(count, msg);
+			listMsg.add(mgc);
+			count++;
+		}
+
+		return boo;
+
+	}
+
+	// recieve떄 호출
+	public String[] getQueueMsg(String queNM) {
+//		String[] res = new String[2];
+
+		
+		String[] res = {"-1","No Message"};
+		
+		if (listMsg.size() > 0) {
+
+			for (int i = 0; i < listMsg.size(); i++) {
+				if (listMsg.get(i).getMsg()[1] == "A") {
+					res[0] = listMsg.get(i).getMsg()[0];
+					res[1] = listMsg.get(i).getMsg()[2];
+
+					listMsg.get(i).setRecYN("I");
+					break;
+				}
+			}
+		}
+
+		return res;
+	}
+
+	public void outputFailMsg(int msgID) {
+		// count--;
+
+		if (listMsg.size() > 0) {
+
+			for (int i = 0; i < listMsg.size(); i++) {
+
+				String[] str = listMsg.get(i).getMsg();
+
+				if (str[0].equals(Integer.toString(msgID)) && str[1] != "A") {
+
+					listMsg.get(i).setRecYN("A");
+					break;
+				}
+			}
+		}
+
+	}
+
+	public String outputQueueMsg(int msgID) {
+
+		String ret = "";
+
+//		if (listMsg.size() > 0) {
+//			// ret = listMsg.remove(msgID);
+//			ret = listMsg.remove(0);
+//		}
+
+		if (listMsg.size() > 0) {
+			for (int i = 0; i < listMsg.size(); i++) {
+
+				String[] str = listMsg.get(i).getMsg();
+
+				if (str[0].equals(Integer.toString(msgID)) && str[1] != "A") {
+					ret = str[2];
+					listMsg.remove(i);
+
+					break;
+				}
+			}
+
+		}
+
+		return ret;
+
+	}
+
+}
