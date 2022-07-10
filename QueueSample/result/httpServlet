@@ -39,6 +39,20 @@ public class httpServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		/*
+		 * 0710
+		 */
+			
+		req.getRequestURI();  	// https://127.0.0.1/Project/project.jsp
+		req.getRequestURL();	// /Project/project.jsp
+		req.getContextPath();	// /Project
+		req.getServletPath();	// /project.jsp
+		req.getRemoteHost();	// / 127.0.0.1
+		req.getServerName();	// /localhost
+		req.getServerPort();	// 8080 
+		
+		
+
 		System.out.println("Request GET : " + req.getRequestURL());
 		if (req.getRequestURI().contains("/RECEIVE")) {
 
