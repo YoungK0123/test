@@ -4,19 +4,21 @@ import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.ServletHandler;
 
 /*
- * 8. https ½Ç½À - server
- * http 8080 port ·Î Jetty ServerConnector(WAS) °¡ ±¸µ¿
+ * 8. https ì‹¤ìŠµ - server
+ * http 8080 port ë¡œ Jetty ServerConnector(WAS) ê°€ êµ¬ë™
  * 
- * sample ÀÌ ÁÖ¾îÁü 
+ * sample ì´ ì£¼ì–´ì§ 
  * 
  * servletHandler.addServletWithMapping(MyServlet.class, "/*");
- * ¸¸ Ã¼Å© ÇÏ¸é µÉµí
- * >> /*À¸·Î ¸ğµÎ ÀÎ½Ä 
- * >> /A , /B·Î º°µµÀÇ servletÀ¸·Î ¸¸µé¾î¼­ ±¸ºĞÇØ¼­ ¸¸µé¸é µÉ µí 
+ * ë§Œ ì²´í¬ í•˜ë©´ ë ë“¯
+ * >> /*ìœ¼ë¡œ ëª¨ë‘ ì¸ì‹ 
+ * >> /A , /Bë¡œ ë³„ë„ì˜ servletìœ¼ë¡œ ë§Œë“¤ì–´ì„œ êµ¬ë¶„í•´ì„œ ë§Œë“¤ë©´ ë  ë“¯ 
  * 
  * 
- * sample·Î ÁÖ¾îÁü 
- * test
+ * sampleë¡œ ì£¼ì–´ì§ 
+ * test 
+ * 0710
+ * multi port 
  * 
  * 
  */
@@ -35,6 +37,12 @@ public class MyServer {
 		http.setHost("127.0.0.1");
 		http.setPort(8080);
 		server.addConnector(http);
+		
+		//0710 - port 8089
+		ServerConnector http2 = new ServerConnector(server);
+		http2.setHost("127.0.0.1");
+		http2.setPort(8089);
+		server.addConnector(http2);
 
 		ServletHandler servletHandler = new ServletHandler();
 		servletHandler.addServletWithMapping(MyServlet.class, "/*");
