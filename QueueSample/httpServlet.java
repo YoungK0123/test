@@ -29,6 +29,21 @@ public class httpServlet extends HttpServlet {
 	private LinkedHashMap<String, QueueMsg> queues = new LinkedHashMap<String, QueueMsg>();
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		/*
+		 * 0710
+		 */
+		
+		System.out.println();
+		
+		req.getRequestURI();  	// https://127.0.0.1/Project/project.jsp
+		req.getRequestURL();	// /Project/project.jsp
+		req.getContextPath();	// /Project
+		req.getServletPath();	// /project.jsp
+		req.getRemoteHost();	// / 127.0.0.1
+		req.getServerName();	// /localhost
+		req.getServerPort();	// 8080 
+		
 
 		System.out.println("Request GET : " + req.getRequestURL());
 		if (req.getRequestURI().contains("/RECEIVE")) {
@@ -134,7 +149,7 @@ public class httpServlet extends HttpServlet {
 			}
 
 			/*
-			 * ±»ÀÌ ÇÊ¿ä ¾ø´Â µí res.setContentType("application/json");
+			 * Â±Â»Ã€ÃŒ Ã‡ÃŠÂ¿Ã¤ Â¾Ã¸Â´Ã‚ ÂµÃ­ res.setContentType("application/json");
 			 */
 			resquestr = resgson.toJson(resjobj);
 			res.setStatus(200);
